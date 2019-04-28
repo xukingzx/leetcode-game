@@ -1,1 +1,21 @@
-
+202-HappyNumber-java
+class Solution {
+    public boolean isHappy(int n) {
+        Set<Integer>set=new HashSet<>();
+        while(n!=1)
+        {
+            if(!set.add(n))
+            {
+                return false;
+            }
+            int value=0;
+            while(n!=0)
+            {
+                value+=(n%10)*(n%10);
+                n/=10;
+            }
+            n=value;
+        }
+        return true;
+    }
+}
