@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class MathQuestion {
     public static void main(String[] args) {
-        System.out.println(isHappy(19));
+        System.out.println(isHappy(12));
     }
 
     /**
@@ -19,10 +19,9 @@ public class MathQuestion {
                 sum += (n % 10) * (n % 10);
                 n /= 10;
             }
-            if (set.contains(sum)) {
+            if (!set.add(n = sum)) {
                 return false;
             }
-            set.add(n = sum);
         }
         return true;
     }
