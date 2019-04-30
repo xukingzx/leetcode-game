@@ -90,3 +90,15 @@ class Solution {
         return newHead;
     }
 }
+231-2的幂次-java
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        
+        if(n<=0)
+            return false; 
+        if((n&n-1)==0) 
+            return true; 
+        else
+            return false;
+    }
+}    //3是011，4是100；2是10，1是01.
