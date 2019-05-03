@@ -110,6 +110,14 @@ class Solution:
             i += 1
             j -= 1
 
+    # 231. 2的幂
+    def isPowerOfTwo(self, n: int) -> bool:
+        if n == 0:
+            return False
+        if n & (n - 1) == 0:
+            return True
+        return False
+
 
 class TreeNode:
     def __init__(self, x):
