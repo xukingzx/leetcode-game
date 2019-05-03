@@ -86,6 +86,16 @@ class Solution:
         else:
             return sum
 
+    # 268. 缺失数字
+    def missingNumber(self, nums):
+        list = [0] * (len(nums) + 1)
+        for i in range(len(nums)):
+            list[nums[i]] = 1
+        for i in range(len(nums) + 1):
+            if list[i] == 0:
+                return i
+        return len(nums)
+
 
 class TreeNode:
     def __init__(self, x):
