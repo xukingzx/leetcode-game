@@ -96,6 +96,20 @@ class Solution:
                 return i
         return len(nums)
 
+    # 344. 反转字符串
+    def reverseString(self, s) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        i = 0
+        j = len(s) - 1
+        while i < j:
+            temp = s[i]
+            s[i] = s[j]
+            s[j] = temp
+            i += 1
+            j -= 1
+
 
 class TreeNode:
     def __init__(self, x):
