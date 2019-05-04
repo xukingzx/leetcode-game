@@ -144,4 +144,15 @@ class Solution {
 
     }
 }   //比较取巧方法，一般用映射做
+628-三个数的最大乘积-java
+class Solution {
+    public int maximumProduct(int[] nums) {
+       int len=nums.length;
+       Arrays.sort(nums);
+       if(nums.length<3){
+           return 0;
+       }
+        return Math.max(nums[len-1]*nums[len-2]*nums[len-3],nums[0]*nums[1]*nums[len-1]);
 
+    }
+}
