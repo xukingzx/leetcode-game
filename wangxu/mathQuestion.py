@@ -161,6 +161,29 @@ class Solution:
                 return False
         return True
 
+    # 43. 字符串相乘
+    def multiply(self, num1, num2):
+        if num1 == '0' or num2 == '0':
+            return '0'
+
+    # 11. 盛最多水的容器
+    def maxArea(self, height):
+        max = 0
+        i = 0
+        j = len(height) - 1
+        while i < j:
+            print("i is:", i)
+            print("j is:", j)
+            s = (j - i) * (height[i] if height[i] < height[j] else height[j])
+            print(s)
+            if s > max:
+                max = s
+            if height[i] < height[j]:
+                i += 1
+            else:
+                j -= 1
+        return max
+
 
 class TreeNode:
     def __init__(self, x):
@@ -183,27 +206,22 @@ def printList(list):
 
 if __name__ == '__main__':
     solution = Solution()
-    root = TreeNode(1)
-    left1 = TreeNode(2)
-    left2 = TreeNode(5)
-    right = TreeNode(3)
-    root.left = left1
-    root.right = right
-    left1.right = left2
+    # root = TreeNode(1)
+    # left1 = TreeNode(2)
+    # left2 = TreeNode(5)
+    # right = TreeNode(3)
+    # root.left = left1
+    # root.right = right
+    # left1.right = left2
     # print(solution.myAtoi("123"))
     # print(solution.myAtoi("12147483648"))
     # print(solution.myAtoi("4193 with words"))
     # print(solution.myAtoi("  00   00 0"))
     # print(solution.myAtoi("   +0 123"))
     # print(solution.myAtoi("2147483648"))
-    l1 = ListNode(2)
-    l1.next = ListNode(4)
-    l1.next.next = ListNode(3)
-    l2 = ListNode(5)
-    l2.next = ListNode(6)
-    l2.next.next = ListNode(4)
-    l2.next.next.next = ListNode(4)
-    print(printList(solution.addTwoNumbers(l1, l2)))
+    list = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+
+    print(solution.maxArea(list))
 
     # a = [1, 2, 3]
     # b = a * 1
