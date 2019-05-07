@@ -210,6 +210,16 @@ class Solution:
                     max = temp
         return max
 
+    # 198. 打家劫舍
+    def rob(self, nums):
+        if len(nums) == 1:
+            return nums[0]
+        if len(nums) == 2:
+            return nums[0] if nums[0] > nums[1] else nums[1]
+        a = nums[0]
+        b = nums[1]
+        return 1
+
 
 class TreeNode:
     def __init__(self, x):
