@@ -1,6 +1,7 @@
 class Solution:
     list = []
 
+    # 1. 两数之和
     def twoSum(self, nums, target):
         sum_map = {}
         for i in range(len(nums)):
@@ -118,12 +119,66 @@ class Solution:
             return True
         return False
 
+    # 2. 两数相加
+    def addTwoNumbers(self, l1, l2):
+        head = ListNode(0)
+        p = head
+        temp = 0
+        while l1 is not None and l2 is not None:
+            n = l1.val + l2.val + temp
+            p.next = ListNode(n % 10)
+            temp = n // 10
+            p = p.next
+            l1 = l1.next
+            l2 = l2.next
+        while l1 is not None:
+            n = l1.val + temp
+            p.next = ListNode(n % 10)
+            temp = n // 10
+            p = p.next
+            l1 = l1.next
+        while l2 is not None:
+            n = l2.val + temp
+            p.next = ListNode(n % 10)
+            temp = n // 10
+            p = p.next
+            l2 = l2.next
+        if temp == 1:
+            p.next = ListNode(1)
+        return head.next
+
+    # 263. 丑数
+    def isUgly(self, num: int) -> bool:
+        while num != 1:
+            temp = num
+            if num / 2 == num // 2:
+                num /= 2
+            if num / 3 == num // 3:
+                num /= 3
+            if num / 5 == num // 5:
+                num /= 5
+            if temp == num:
+                return False
+        return True
+
 
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
+
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+def printList(list):
+    while list is not None:
+        print(list.val)
+        list = list.next
 
 
 if __name__ == '__main__':
@@ -135,12 +190,21 @@ if __name__ == '__main__':
     root.left = left1
     root.right = right
     left1.right = left2
-    print(solution.myAtoi("123"))
-    print(solution.myAtoi("12147483648"))
-    print(solution.myAtoi("4193 with words"))
-    print(solution.myAtoi("  00   00 0"))
-    print(solution.myAtoi("   +0 123"))
-    print(solution.myAtoi("2147483648"))
+    # print(solution.myAtoi("123"))
+    # print(solution.myAtoi("12147483648"))
+    # print(solution.myAtoi("4193 with words"))
+    # print(solution.myAtoi("  00   00 0"))
+    # print(solution.myAtoi("   +0 123"))
+    # print(solution.myAtoi("2147483648"))
+    l1 = ListNode(2)
+    l1.next = ListNode(4)
+    l1.next.next = ListNode(3)
+    l2 = ListNode(5)
+    l2.next = ListNode(6)
+    l2.next.next = ListNode(4)
+    l2.next.next.next = ListNode(4)
+    print(printList(solution.addTwoNumbers(l1, l2)))
+
     # a = [1, 2, 3]
     # b = a * 1
     # a[0] = 2
