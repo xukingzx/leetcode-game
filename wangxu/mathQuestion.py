@@ -184,6 +184,32 @@ class Solution:
                 j -= 1
         return max
 
+    # 5. 最长回文子串
+    def longestPalindrome(self, s):
+        max = ''
+        for i in range(len(s)):
+            j = 1
+            temp = s[i]
+            while i - j >= 0 and i + j < len(s):
+                if s[i - j] != s[i + j]:
+                    break
+                temp = s[i - j] + temp + s[i + j]
+                j += 1
+            if len(temp) > len(max):
+                max = temp
+        for i in range(len(s) - 1):
+            if s[i] == s[i + 1]:
+                temp = s[i] * 2
+                j = 1
+                while i - j >= 0 and i + j + 1 < len(s):
+                    if s[i - j] != s[i + j + 1]:
+                        break
+                    temp = s[i - j] + temp + s[i + j + 1]
+                    j += 1
+                if len(temp) > len(max):
+                    max = temp
+        return max
+
 
 class TreeNode:
     def __init__(self, x):
@@ -219,9 +245,8 @@ if __name__ == '__main__':
     # print(solution.myAtoi("  00   00 0"))
     # print(solution.myAtoi("   +0 123"))
     # print(solution.myAtoi("2147483648"))
-    list = [1, 8, 6, 2, 5, 4, 8, 3, 7]
 
-    print(solution.maxArea(list))
+    print(solution.longestPalindrome("cbbd"))
 
     # a = [1, 2, 3]
     # b = a * 1
