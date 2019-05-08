@@ -67,6 +67,6 @@ print(num)
 # print(msg.as_string())
 #
 # server = smtplib.SMTP('smtp.qq.com')
-# server.login('787378146@qq.com', 'rvsfvrczuytmbgac')
+# server.login('787378146@qq.com', '')
 # server.sendmail('787378146@qq.com', '1424749594@qq.com', msg.as_string())
 # server.quit()
