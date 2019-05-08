@@ -220,6 +220,16 @@ class Solution:
         b = nums[1]
         return 1
 
+    # 283. 移动零
+    def moveZeroes(self, nums):
+        j = 0
+        for i in range(len(nums)):
+            if nums[i] != 0:
+                nums[j] = nums[i]
+                j += 1
+        for i in range(j, len(nums)):
+            nums[i] = 0
+
 
 class TreeNode:
     def __init__(self, x):
@@ -256,7 +266,8 @@ if __name__ == '__main__':
     # print(solution.myAtoi("   +0 123"))
     # print(solution.myAtoi("2147483648"))
 
-    print(solution.longestPalindrome("cbbd"))
+    nums = [1, 2, 0, 3, 4]
+    print(solution.moveZeroes(nums))
 
     # a = [1, 2, 3]
     # b = a * 1
