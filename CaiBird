@@ -260,3 +260,23 @@ class Solution {
             
     }
 }
+83-删除排序链表中的重复元素-java
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode last = head;
+        ListNode next = null;
+        if(last != null)
+        {
+            next = last.next;
+        }
+        while(next != null)
+        {
+            if(next.val == last.val)
+                last.next = next.next;
+            else
+                last = next;
+            next = last.next;
+        }
+        return head;       
+    }
+}
