@@ -241,3 +241,22 @@ class Solution {
         //三角形行列式求面积公式
     }
 }
+349-两个数组的交集-java
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        Set<Integer> set1 = new HashSet<Integer>();
+        for (int num : nums1) {
+            set1.add(num);
+        }
+        int idx = 0;
+        for (int i = 0; i < nums2.length; i++) {
+            if (set1.contains(nums2[i])) {
+                nums2[idx++] = nums2[i];
+                set1.remove(nums2[i]);
+            }
+        }
+        return Arrays.copyOfRange(nums2, 0, idx);
+            
+    }
+}
