@@ -323,3 +323,17 @@ class Solution {
         return child;    
     }
 }
+441-排列硬币-java
+class Solution {
+    public int arrangeCoins(int n) {
+        int i = 0;
+        while(i <= n)
+        {
+            n = n - i;
+            if(n < 0)
+                break;
+            i++;
+        }
+        return i - 1;
+    }
+}
