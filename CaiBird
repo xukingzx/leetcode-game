@@ -372,3 +372,19 @@ class Solution {
             return false;
     }
 }
+278-第一个版本错误的数字-java
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int l = 1;
+        int r = n;
+        while (l < r) {
+            int mid = l + (r - l) / 2;   //mid = (l + r) / 2; 容易溢出
+            if (isBadVersion(mid)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return r;
+    }
+}
