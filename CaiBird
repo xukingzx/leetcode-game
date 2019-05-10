@@ -363,3 +363,12 @@ class Solution {
         return Math.min(dp[n-1],dp[n-2]);
     }
 }
+1025-除数博弈-java
+class Solution {
+    public boolean divisorGame(int N) {
+        if(N % 2 == 0)
+            return true;
+        else
+            return false;
+    }
+}
