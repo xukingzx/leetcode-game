@@ -401,3 +401,32 @@ public class Solution {
         return count;
     }
 }
+726-二进制表示中质数个计算置位-java
+class Solution {
+    public int countPrimeSetBits(int L, int R) {
+        int resCount = 0;
+        for (int num = L; num <= R; ++num){
+            int tempNum = num, tempCount = 0;
+            while (tempNum != 0){
+                tempNum &= (tempNum - 1);
+                tempCount += 1;
+            }
+            if (isPrime(tempCount)){
+                resCount += 1;
+            }
+        }
+        return resCount;
+    }
+
+   private boolean isPrime(int num){
+        if (num < 2){
+            return false;
+        }
+        for (int i = (int)(Math.sqrt(num)); i > 1; --i){
+            if (num % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
