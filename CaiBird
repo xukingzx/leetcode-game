@@ -492,3 +492,17 @@ public class Solution {
         return pA;
     }
 }
+876-链表的中间节点-java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while(fast.next != null && fast.next.next != null)
+        {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return fast.next == null ? slow : slow.next;
+        
+    }
+}
