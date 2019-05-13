@@ -528,3 +528,68 @@ class Solution {
         return head.next;
     }
 }
+922-按奇偶排序数组2-java
+class Solution {
+    public int[] sortArrayByParityII(int[] A) {
+        int i = 0;
+        int j = 1;
+        while (j < A.length && i < A.length) {
+            if (A[i] % 2 == 0) {
+                i += 2;
+            } else {
+                while (A[j] % 2 != 0 && j < A.length) {
+                    j += 2;
+                }
+                if (j < A.length) {
+                    int temp = A[i];
+                    A[i] = A[j];
+                    A[j] = temp;
+                }
+            }
+        }
+        return A;    
+    }
+}
+350-两个数组的交集2-java
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0, j = 0; i < nums1.length && j < nums2.length;)
+        {
+            if(nums1[i] < nums2[j])
+                i++;
+            else if(nums1[i] > nums2[j])
+                j++;
+            else{
+                list.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+        int [] res = new int[list.size()];
+        for(int i = 0; i < list.size(); i++)
+        {
+            res[i] = list.get(i);
+        }
+        return res;
+    }
+}
+976-三角形的最大周长-java
+class Solution {
+    public int largestPerimeter(int[] A) {
+        Arrays.sort(A);
+        for(int i = A.length - 1; i >= 2; i--)
+        {
+            int a = A[i];
+            int b = A[i-1];
+            int c = A[i-2];
+            if(a < b + c)
+            {
+                return a + b + c;
+            }
+        }
+        return 0;
+    }
+}
