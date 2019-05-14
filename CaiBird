@@ -593,3 +593,52 @@ class Solution {
         return 0;
     }
 }
+33-搜索旋转排序数组-java
+class Solution {
+    public int search(int[] nums, int target) {
+        return search(nums, 0, nums.length - 1, target);
+    }
+    
+    private int search(int[] nums, int low, int high, int target) {
+        if (low > high)
+            return -1;
+        int mid = (low + high) / 2;
+        if (nums[mid] == target)
+            return mid;
+        if (nums[mid] < nums[high]) {
+            if (nums[mid] < target && target <= nums[high])
+                return search(nums, mid + 1, high, target); //中间数小于目标数且目标数小于等于最右边数，则在中间数右边找
+            else
+                return search(nums, low, mid - 1, target); //中间数大于目标数或者目标数大于最右边数，则在中间数左边找
+        } else {
+            if (nums[low] <= target && target < nums[mid])
+                return search(nums, low, mid - 1, target);
+            else
+                return search(nums, mid + 1, high, target);
+        }
+    }
+}
+48-旋转图像-java
+class Solution {
+    public void rotate(int[][] matrix) {
+        int abs1 = 0;
+        int abs2 = matrix.length - 1;
+        while (abs1 <= abs2) {
+            int p1 = abs1;
+            int p2 = abs2;
+            while (p1 != abs2) {
+                int temp = matrix[abs1][p1];        
+                matrix[abs1][p1] = matrix[p2][abs1];
+                matrix[p2][abs1] = matrix[abs2][p2];
+                matrix[abs2][p2] = matrix[p1][abs2];
+                matrix[p1][abs2] = temp;               //最外面先换，再换里面
+                p1 += 1;
+                p2 -= 1;
+            }
+            abs1 += 1;
+            abs2 -= 1;
+        }
+}
+}
+        
+    
