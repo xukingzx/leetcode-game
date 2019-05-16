@@ -657,5 +657,29 @@ class Solution {
         return res;
     }
 }
+1033-移动石子直到连续-java
+class Solution {
+    public int[] numMovesStones(int a, int b, int c) {
+        int max, min;
+        min = Math.min(a, Math.min(b, c));
+        max = Math.max(a, Math.max(b, c));
+        b = a + b + c - max - min;
+        a= min;
+        c = max;
+        
+        if (Math.abs(b - a) == 1 && Math.abs(c - b) == 1)
+        {
+            return new int[]{0, 0};
+        }
+        else if (Math.abs(b - a) <= 2 || Math.abs(c - b) <= 2) 
+        {
+            return new int[]{1, c - a-2};
+        }
+        else
+        {
+            return new int[]{2, c - a-2};
+        }
 
+    }
+}
     
