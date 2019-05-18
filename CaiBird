@@ -711,3 +711,49 @@ class Solution {
         return res;
     }
 }
+229-求众数2-java
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        if(nums.length==0)
+            return result;
+        if(nums.length==1)
+        {
+            result.add(nums[0]);
+            return result;
+        }
+        int m = nums[0];
+        int n = nums[1];
+        int countM = 0;
+        int countN = 0;
+        for(int i = 0;i < nums.length; i++)
+        {
+            if(countM == 0 && n != nums[i])
+                m = nums[i];
+            else if(countN ==0 && m != nums[i])
+                n = nums[i];
+            if(nums[i] == m)
+                countM ++;
+            else if(nums[i] == n && m!=n)
+                countN ++;
+            else{
+                countM --;
+                countN --;
+            }
+        } // 摩尔投票法选出出现次数最多的两个数 m,n
+        countM = 0;
+        countN = 0;
+        for(int i = 0; i < nums.length; i++)
+        {
+            if(nums[i] == m)
+                countM ++;
+            else if(nums[i] == n)
+                countN ++;
+        }
+         if(countM > nums.length/3)
+            result.add(m);
+         if(countN > nums.length/3)
+            result.add(n);
+        return result;
+    }
+}
