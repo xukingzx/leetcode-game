@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 class Solution:
     list = []
 
@@ -148,7 +151,7 @@ class Solution:
         return head.next
 
     # 263. 丑数
-    def isUgly(self, num: int) -> bool:
+    def isUgly(self, num):
         while num != 1:
             temp = num
             if num / 2 == num // 2:
@@ -230,6 +233,45 @@ class Solution:
         for i in range(j, len(nums)):
             nums[i] = 0
 
+    # 21. 合并两个有序链表
+    def mergeTwoLists(self, l1, l2):
+        head = ListNode(0)
+        p = head
+        while l1 is not None and l2 is not None:
+            if l1.val < l2.val:
+                p.next = l1
+                l1 = l1.next
+            else:
+                p.next = l2
+                l2 = l2.next
+            p = p.next
+        while l1 is not None:
+            p.next = l1
+            l1 = l1.next
+            p = p.next
+        while l2 is not None:
+            p.next = l2
+            l2 = l2.next
+            p = p.next
+        return head.next
+
+    # 14. 最长公共前缀
+    def longestCommonPrefix(self, strs):
+        if len(strs) == 0:
+            return ""
+        if len(strs) == 1:
+            return strs[0]
+        temp = strs[0]
+        for i in range(1, len(strs)):
+            n = len(temp) if len(temp) < len(strs[i]) else len(strs[i])
+            for j in range(n):
+                if temp[j] != strs[i][j]:
+                    break
+
+    # 136. 只出现一次的数字
+    def singleNumber(self, nums):
+        return reduce(lambda x, y: x ^ y, nums)
+
 
 class TreeNode:
     def __init__(self, x):
@@ -266,12 +308,23 @@ if __name__ == '__main__':
     # print(solution.myAtoi("   +0 123"))
     # print(solution.myAtoi("2147483648"))
 
-    nums = [1, 2, 0, 3, 4]
-    print(solution.moveZeroes(nums))
+    # l1 = ListNode(-9)
+    # l1.next = ListNode(3)
+    # l2 = ListNode(5)
+    # l2.next = ListNode(7)
+    # nums = [1, 2, 0, 3, 4]
+    # print(printList(solution.mergeTwoLists(l1, l2)))
 
+    # for i in range(10):
+    #     print(i)
+    #     if i == 9:
+    #         break
+    #
+    # print(i)
     # a = [1, 2, 3]
     # b = a * 1
     # a[0] = 2
     # print(a)
     # print(b)
     # print(result)
+    print(reduce)

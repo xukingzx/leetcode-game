@@ -16,25 +16,24 @@ import time
 # result.append('33050161749500000145')
 # result.append('95200155300001827')
 # result.append('95200155300001798')
-# db = pymysql.connect("115.29.10.121", "root", "dpjA8Z6XPXbvos", "sfs-server")
-# cursor = db.cursor()
-# for account in result:
-#     # print(type(account))
-#     sql = "SELECT * from t_channel_config where channel_account = '" + account + "'"
-#     cursor.execute(sql)
-#     data = cursor.fetchone()
-#     if data is None:
-#         delList.append(account)
-# db.close()
+# print(len(result))
+db = pymysql.connect("115.29.10.121", "root", "dpjA8Z6XPXbvos", "sfs-server")
+cursor = db.cursor()
+for account in result:
+    # print(type(account))
+    sql = "SELECT * from t_channel_config where channel_account = '" + account + "'"
+    cursor.execute(sql)
+    data = cursor.fetchone()
+db.close()
 # for value in delList:
 #     result.remove(value)
 # print(len(result))
-# file = open('data.txt')
-# s = file.read()
-# pattern = re.compile(r'\d+')
-# result = pattern.findall(s)
-# print(len(result))
-# file.close()
+file = open('data.txt')
+s = file.read()
+pattern = re.compile(r'\d+')
+result = pattern.findall(s)
+print(len(result))
+file.close()
 # db = pymysql.connect("115.29.10.121", "root", "dpjA8Z6XPXbvos", "sfs-server")
 # cursor = db.cursor()
 # for account in result:
@@ -53,13 +52,14 @@ import time
 # print(os.getcwd())
 #
 # print(glob.glob('*'))
-mail_user = "787378146"
-mail_postfix = "qq.com"
-me = mail_user + "<" + mail_user + "@" + mail_postfix + ">"
-start = time.strptime('2017-04-03', '%Y-%m-%d')
-print(start)
-num = (time.time() - time.mktime(start)) // (3600 * 24)
-print(num)
+# mail_user = "787378146"
+# mail_postfix = "qq.com"
+# me = mail_user + "<" + mail_user + "@" + mail_postfix + ">"
+# start = time.strptime('2017-04-03', '%Y-%m-%d')
+#
+# print(start)
+# num = (time.time() - time.mktime(start)) // (3600 * 24)
+# print(num)
 # msg = MIMEText('test')
 # msg['Subject'] = 'sub'
 # msg['From'] = me
