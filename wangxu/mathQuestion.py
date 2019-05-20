@@ -272,6 +272,55 @@ class Solution:
     def singleNumber(self, nums):
         return reduce(lambda x, y: x ^ y, nums)
 
+    # 169. 求众数
+    def majorityElement(self, nums) -> int:
+        n = 0
+        temp = nums[0]
+        for item in nums:
+            if item == temp:
+                n += 1
+            else:
+                n -= 1
+            if n < 0:
+                temp = item
+                n = 1
+        return temp
+
+    # 229. 求众数 II
+    def majorityElement(self, nums):
+        temp1 = 0
+        temp2 = 0
+        count1 = 0
+        count2 = 0
+        for item in nums:
+            if item == temp1:
+                count1 += 1
+            elif item == temp2:
+                count2 += 1
+            else:
+                count1 -= 1
+                count2 -= 1
+            print("temp1 is:{},temp2 is:{},count1 is:{}, count2 is:{}", temp1, temp2, count1, count2)
+            if count1 < 0:
+                temp1 = item
+                count1 = 0
+                continue
+            if item == temp1:
+                continue
+            if count2 < 0:
+                temp2 = item
+                count2 = 0
+        return [temp1, temp2]
+
+    # 985. 查询后的偶数和
+    def sumEvenAfterQueries(self, A, queries):
+        list = []
+        for item in queries:
+            A[item[1]] += item[0]
+            sum = reduce(lambda x, y: x + y, filter(lambda x: x & 1 == 0, A))
+            list.append(sum)
+        return list
+
 
 class TreeNode:
     def __init__(self, x):
@@ -327,4 +376,8 @@ if __name__ == '__main__':
     # print(a)
     # print(b)
     # print(result)
-    print(reduce)
+    nums = [1, 1, 1, 3, 3, 3]
+    B = filter(lambda x: x & 1 == 0, nums)
+    print(len(list(B)))
+    a = reduce(lambda x, y: x + y, B)
+    print(a)
