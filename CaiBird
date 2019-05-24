@@ -896,3 +896,20 @@ class Solution {
         return m > 0;
     }
 }
+961-重复n次的数-java
+class Solution {
+    public int repeatedNTimes(int[] A) {
+    if(A[0] == A[1]) return A[0];
+    if(A[0] == A[2]) return A[0];
+    if(A[2] == A[1]) return A[1];
+    int i;
+    for( i = 3; i < A.length-2; i = i + 2)
+    {
+       if(A[i] == A[i+1])
+       {
+           return A[i];
+       }
+    }
+    return A[i];
+    }
+}
