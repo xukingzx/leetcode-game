@@ -913,3 +913,18 @@ class Solution {
     return A[i];
     }
 }
+1010-总持续时间可被60整除的歌曲-java
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int[] result = new int[60];
+        int res = 0;
+        for(int t = 0; t < time.length; t++)
+        {
+            time[t] = time[t] % 60;
+            int index = time[t] == 0 ? 0 : (60 - time[t]);
+            res += result[index];
+            result[time[t]]++; //取余后找60-余数的位置是否有存数，无存数就无法满足，然后把取余后存入
+        }
+        return res;
+    }
+}
