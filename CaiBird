@@ -757,3 +757,191 @@ class Solution {
         return result;
     }
 }
+674-最长连续递增子序列-java
+class Solution {
+    public int findLengthOfLCIS(int[] nums) {
+        if(nums.length == 0)
+            return 0;
+        int m = 0, n = 1;
+        for(int i = 1; i < nums.length; i++)
+        {
+            if(nums[i] > nums[i-1])
+                n++;
+            else
+            {
+                m = Math.max(m,n);
+                n = 1;
+            }
+        }
+        return Math.max(m,n);
+    }
+}
+860-柠檬水找零-java
+class Solution {
+    public boolean lemonadeChange(int[] bills) {
+        int nums1 = 0;  //五元的个数
+        int nums2 = 0;  //十元的个数
+        for(int i = 0 ; i < bills.length ; i++)
+        {
+            if(bills[i] == 5)
+                nums1++;
+            else if(bills[i] == 10 && nums1 > 0)
+            {
+                nums1--;
+                nums2++;
+            }
+            else if(bills[i] == 20 && nums1 > 0 && nums2 > 0)
+            {
+                nums1--;
+                nums2--;
+            }
+            else if(bills[i] == 20 && nums1 >=3)
+            {
+                nums1 -= 3;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+1005-K次取反后最大化的数组值-java
+class Solution {
+    public int largestSumAfterKNegations(int[] A, int K) {
+        Arrays.sort(A);
+        for(int i = 0 ; i < A.length ; i++)
+        {
+            if(A[i] < 0 && K > 0)
+            {
+                A[i] = -A[i];
+                K--;
+            }
+        }
+        Arrays.sort(A);
+        if(K % 2 != 0)
+            A[0] = -A[0];
+        int result = 0;
+        for(int i = 0 ; i < A.length ; i++)
+        {
+            result += A[i];
+        }
+        return result;
+    }
+}
+54-螺旋矩阵-java
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        if(matrix.length == 0 || matrix[0].length == 0)
+            return list;
+        int y1 = 0, y2 = matrix.length - 1;
+        int x1 = 0, x2 = matrix[0].length - 1;
+        
+        while(y1 <= y2 && x1 <= x2)
+        {
+            for(int i = x1; i <= x2; i++)
+            {
+                list.add(matrix[y1][i]);
+            }
+            if(y1 == y2) break;
+            y1++;
+            
+            for(int j = y1; j <= y2; j++)
+            {
+                list.add(matrix[j][x2]);
+            }
+            if(x1 == x2) break;
+            x2--;
+            
+            for(int i = x2; i >= x1; i--)
+            {
+                list.add(matrix[y2][i]);
+            }
+            if(y1 == y2) break;
+            y2--;
+            
+            for(int j = y2; j >= y1; j--)
+            {
+                list.add(matrix[j][x1]);
+            }
+            if(x1 == x2) break;
+            x1++;
+        }
+        return list;
+    }
+}
+788-旋转数字-java
+class Solution {
+    private int[] ans = {0,0,1,-1,-1,1,1,-1,0,1};
+    public int rotatedDigits(int N) {
+        int count = 0;
+        for(int i = 1; i <= N; i++)
+        {
+            if(istrue(i))
+                count++;
+        }
+        return count;
+    }
+    private boolean istrue(int i)
+    {
+        int m = 0;
+        while(i > 0)
+        {
+            int mod = i % 10;
+            m |= ans[mod];
+            i = i / 10;
+        }
+        return m > 0;
+    }
+}
+961-重复n次的数-java
+class Solution {
+    public int repeatedNTimes(int[] A) {
+    if(A[0] == A[1]) return A[0];
+    if(A[0] == A[2]) return A[0];
+    if(A[2] == A[1]) return A[1];
+    int i;
+    for( i = 3; i < A.length-2; i = i + 2)
+    {
+       if(A[i] == A[i+1])
+       {
+           return A[i];
+       }
+    }
+    return A[i];
+    }
+}
+1010-总持续时间可被60整除的歌曲-java
+class Solution {
+    public int numPairsDivisibleBy60(int[] time) {
+        int[] result = new int[60];
+        int res = 0;
+        for(int t = 0; t < time.length; t++)
+        {
+            time[t] = time[t] % 60;
+            int index = time[t] == 0 ? 0 : (60 - time[t]);
+            res += result[index];
+            result[time[t]]++; //取余后找60-余数的位置是否有存数，无存数就无法满足，然后把取余后存入
+        }
+        return res;
+    }
+}
+495-timo攻击-java
+class Solution {
+    public int findPoisonedDuration(int[] timeSeries, int duration) {
+        if(timeSeries.length == 0)
+            return 0;
+        int count = 0;
+        for(int i = 0; i < timeSeries.length - 1; i++)
+        {
+            if(timeSeries[i] + duration < timeSeries[i+1])
+                count += duration;
+            else
+                count += timeSeries[i+1] - timeSeries[i];
+        }
+        count += duration;
+        return count;
+    }
+}
