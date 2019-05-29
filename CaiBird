@@ -983,3 +983,43 @@ class Solution {
         
        }
 }
+59-螺旋矩阵2-java
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int matrix[][] = new int[n][n];
+        int y1 = 0,y2 = n - 1;
+        int x1 = 0,x2 = n - 1;
+        int c = 1;
+        while(y1 <= y2 && x1 <= x2)
+        {
+            for(int i = x1; i <= x2; i++)
+            {
+                matrix[y1][i] = c++;
+            }
+            if(y1 == y2) break;
+            y1++;
+            
+            for(int j = y1; j <= y2; j++)
+            {
+                matrix[j][x2] = c++;
+            }
+            if(x1 == x2) break;
+            x2--;
+            
+            for(int i = x2; i >= x1; i--)
+            {
+               matrix[y2][i] = c++;
+            }
+            if(y1 == y2) break;
+            y2--;
+            
+            for(int j = y2; j >= y1; j--)
+            {
+                matrix[j][x1] = c++;
+            }
+            if(x1 == x2) break;
+            x1++;
+        }
+        return matrix;
+    }
+}
