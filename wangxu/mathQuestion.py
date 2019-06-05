@@ -376,8 +376,8 @@ if __name__ == '__main__':
     # print(a)
     # print(b)
     # print(result)
-    nums = [1, 1, 1, 3, 3, 3]
+    nums = [1, 1, 1, 2, 3, 3, 3]
     B = filter(lambda x: x & 1 == 0, nums)
     print(len(list(B)))
-    a = reduce(lambda x, y: x + y, B)
+    a = reduce(lambda x, y: x + y, nums)
     print(a)
