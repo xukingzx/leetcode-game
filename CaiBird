@@ -1209,3 +1209,96 @@ class Solution {
         return dp[m-1][n-1];
     }
 }
+三数之和-java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        final List<List<Integer>> res = new ArrayList<>();
+        if (nums.length == 0) return res;
+        Arrays.sort(nums);
+        if (nums[0] <= 0 && nums[nums.length - 1] >= 0)
+        {
+            for (int i = 0; i < nums.length - 2;) 
+            {
+                if (nums[i] > 0) break;
+                int l = i + 1;
+                int r = nums.length - 1;
+
+                do 
+                {
+                    int sum = nums[i] + nums[l] + nums[r];
+                    if (sum == 0)
+                    {
+                        res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                   
+                    }
+                    if (sum >= 0)
+                    {
+                        while (nums[r] == nums[--r] && r > l);
+                    }
+                    else 
+                    {
+                        while (nums[l] == nums[++l] && r > l);
+                    }
+                }while (r > l);
+                
+                while(nums[i] == nums[++i] && i < nums.length - 2);
+                
+            }
+        }
+        return res;
+    }
+}
+四数之和-java
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+       List<List<Integer>> result = new ArrayList<>();
+        
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length - 3; i ++) 
+        {
+            
+            if (i != 0 && nums[i] == nums[i-1]) 
+            {
+                continue;
+            }
+            
+            for (int j = i + 1; j < nums.length - 2; j ++) 
+            {
+                if (j != i + 1 && nums[j] == nums[j-1]) 
+                {
+                    continue;
+                }
+
+                int left = j + 1;
+                int right = nums.length -1;
+
+                while (left < right)
+                {
+                   
+                    if ((left != j + 1 && nums[left] == nums[left-1]) || nums[i] + nums[j] + nums[left] + nums[right] < target)
+                    {
+                        left ++;
+                    } else if ((right != nums.length -1 && nums[right] == nums[right + 1]) || nums[i] + nums[j] + nums[left] + nums[right] > target)
+                    {
+                        right --;
+                    } 
+                    else 
+                    {
+                        List<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[left]);
+                        list.add(nums[right]);
+
+                        result.add(list);
+                        left ++;
+                        right --;
+                    }
+                }
+
+            }
+        }
+        return result;
+    }
+}
