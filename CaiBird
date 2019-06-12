@@ -1322,3 +1322,32 @@ class Solution {
         return head;    
     }
 }
+46-java
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        core(nums, 0, res);
+        return res;
+    }
+
+    private static void core(int[] nums, int index, List<List<Integer>> res) {
+            for (int i = index; i < nums.length; i++) {
+            if (index == nums.length - 1) {
+                List<Integer> list = new ArrayList<>();
+                for (int j = 0; j < nums.length; j++) {
+                    list.add(nums[j]);
+                }
+                res.add(list);
+            }
+            swap(nums, i, index);
+            core(nums, index + 1, res);
+            swap(nums, i, index);
+        }
+    }
+
+    private static void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp; 
+    }
+}
