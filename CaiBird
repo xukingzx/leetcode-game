@@ -1362,3 +1362,25 @@ class Solution {
         return next;
     }
 }
+89-最大面积-java
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+        ArrayList<Integer> heightList = new ArrayList();
+        for(int i = 0; i < heights.length; i++)
+            heightList.add(heights[i]);
+        heightList.add(0);
+        int maxArea = 0;
+        
+        Stack<Integer> stack = new Stack<Integer>(); //单调栈
+        
+        for(int i = 0; i < heightList.size(); i++){
+        while(!stack.empty() && (heightList.get(i) < heightList.get(stack.peek())) ){
+          int peek = stack.peek();
+          stack.pop();
+          maxArea = Math.max(maxArea,heightList.get(peek)*(stack.empty()?i:(i-stack.peek()-1)));
+        }
+        stack.push(i); 
+      }
+      return maxArea;
+    }
+}
