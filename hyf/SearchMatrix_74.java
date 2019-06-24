@@ -11,9 +11,10 @@ public class SearchMatrix_74 {
         if(matrix[0][0] > target || matrix[row-1][col-1] < target) return false;
         int index = 0;
         for(int i = 0;i < row;i++){
-            if(matrix[i][0] <= target && matrix[i][col - 1] >= target)
+            if(matrix[i][0] <= target && matrix[i][col - 1] >= target){
                 index = i;
-            break;
+                break;
+            }
         }
         return Arrays.binarySearch(matrix[index],target) >= 0?true:false;
     }
